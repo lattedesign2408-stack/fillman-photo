@@ -73,7 +73,6 @@
     .photographer-card {
       cursor: pointer;
       transition: transform 0.3s, box-shadow 0.3s;
-      border-radius: 8px;
       overflow: hidden;
     }
 
@@ -92,7 +91,7 @@
       aspect-ratio: 1;
       object-fit: cover;
       display: block;
-      border-radius: 8px 8px 0 0;
+      border-radius: 4px;
     }
 
     .card-info {
@@ -465,7 +464,7 @@
         font-size: 24px;
         flex-shrink: 0;
         touch-action: manipulation;
-        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
       }
 
       .tab-bar {
@@ -528,7 +527,8 @@
 <body>
 
   <header class="header">
-    <a href="https://lattedesign2408-stack.github.io/fillman-photo/"><img src="logo.png" alt="FILLMAN" class="header-logo"></a>
+    <a href="https://lattedesign2408-stack.github.io/fillman-photo/"><img src="logo.png" alt="FILLMAN"
+        class="header-logo"></a>
   </header>
 
   <section class="hero">
@@ -726,13 +726,13 @@
     });
 
     // 閉じるボタン（モバイル対応）
-    (function() {
+    (function () {
       const closeBtn = document.getElementById('popupCloseBtn');
-      closeBtn.addEventListener('click', function(e) {
+      closeBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         closePopup();
       });
-      closeBtn.addEventListener('touchend', function(e) {
+      closeBtn.addEventListener('touchend', function (e) {
         e.preventDefault();
         e.stopPropagation();
         closePopup();
