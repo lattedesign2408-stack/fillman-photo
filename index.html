@@ -25,6 +25,8 @@
     .header {
       padding: 16px 40px;
       background: #fff;
+      position: relative;
+      z-index: 1100;
     }
 
     .header-logo {
@@ -125,7 +127,10 @@
     .popup-overlay {
       display: none;
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background: rgba(0, 0, 0, 0.7);
       z-index: 1000;
       justify-content: center;
@@ -165,6 +170,7 @@
       border-radius: 50%;
       transition: background 0.2s;
       z-index: 10;
+      touch-action: manipulation;
     }
 
     .popup-close:hover {
@@ -430,12 +436,13 @@
 
       .popup-overlay {
         padding: 0;
+        padding-top: 44px;
         align-items: stretch;
       }
 
       .popup-content {
         border-radius: 0;
-        max-height: 100vh;
+        max-height: calc(100vh - 44px);
         max-width: 100%;
         margin: 0;
       }
@@ -450,11 +457,23 @@
       }
 
       .popup-close {
-        top: 6px;
-        right: 8px;
-        width: 36px;
-        height: 36px;
+        position: static;
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
         font-size: 24px;
+        flex-shrink: 0;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+      }
+
+      .tab-bar {
+        position: sticky;
+        top: 0;
+        background: #fff;
+        z-index: 10;
+        align-items: center;
       }
 
       .portfolio-tab {
@@ -490,8 +509,13 @@
         font-size: 22px;
       }
 
-      .lightbox-prev { left: 8px; }
-      .lightbox-next { right: 8px; }
+      .lightbox-prev {
+        left: 8px;
+      }
+
+      .lightbox-next {
+        right: 8px;
+      }
 
       .footer {
         padding: 24px 16px;
@@ -504,7 +528,7 @@
 <body>
 
   <header class="header">
-    <img src="logo.png" alt="FILLMAN" class="header-logo">
+    <a href="https://lattedesign2408-stack.github.io/fillman-photo/"><img src="logo.png" alt="FILLMAN" class="header-logo"></a>
   </header>
 
   <section class="hero">
@@ -518,7 +542,7 @@
         <div class="card-img placeholder">プロフィール画像</div>
         <div class="card-info">
           <h3>鈴木千恵</h3>
-          <button class="btn-portfolio">ポートフォリオを見る</button>
+          <button class="btn-portfolio">ポートフォリオ</button>
         </div>
       </div>
     </div>
@@ -527,7 +551,7 @@
         <div class="card-img placeholder">プロフィール画像</div>
         <div class="card-info">
           <h3>日浦香織</h3>
-          <button class="btn-portfolio">ポートフォリオを見る</button>
+          <button class="btn-portfolio">ポートフォリオ</button>
         </div>
       </div>
     </div>
@@ -536,7 +560,7 @@
         <div class="card-img placeholder">プロフィール画像</div>
         <div class="card-info">
           <h3>石田勇太</h3>
-          <button class="btn-portfolio">ポートフォリオを見る</button>
+          <button class="btn-portfolio">ポートフォリオ</button>
         </div>
       </div>
     </div>
@@ -545,11 +569,11 @@
   <!-- ポップアップ -->
   <div class="popup-overlay" id="popup">
     <div class="popup-content">
-      <button class="popup-close" onclick="closePopup()">&times;</button>
       <div class="tab-bar" id="tabBar">
         <button class="tab-btn active" onclick="switchTab(0)">鈴木千恵</button>
         <button class="tab-btn" onclick="switchTab(1)">日浦香織</button>
         <button class="tab-btn" onclick="switchTab(2)">石田勇太</button>
+        <button class="popup-close" id="popupCloseBtn">&times;</button>
       </div>
       <div class="portfolio-tab active" id="tab-0">
         <div class="popup-header">
@@ -700,6 +724,20 @@
         if (e.key === 'ArrowRight') navigateLightbox(1);
       }
     });
+
+    // 閉じるボタン（モバイル対応）
+    (function() {
+      const closeBtn = document.getElementById('popupCloseBtn');
+      closeBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        closePopup();
+      });
+      closeBtn.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closePopup();
+      });
+    })();
 
     // オーバーレイクリックで閉じる
     document.getElementById('popup').addEventListener('click', e => { if (e.target === e.currentTarget) closePopup(); });
