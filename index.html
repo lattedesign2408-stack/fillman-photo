@@ -130,7 +130,7 @@
       z-index: 1000;
       justify-content: center;
       align-items: center;
-      padding: 40px;
+      padding: 10px;
     }
 
     .popup-overlay.show {
@@ -384,14 +384,118 @@
     }
 
     @media (max-width: 480px) {
-      .photographers {
-        grid-template-columns: 1fr;
-        max-width: 320px;
-        margin: 40px auto;
+      .header {
+        padding: 10px 16px;
       }
 
-      .header {
-        padding: 12px 20px;
+      .header-logo {
+        height: 24px;
+      }
+
+      .hero {
+        padding: 36px 16px;
+      }
+
+      .hero h1 {
+        font-size: 18px;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+      }
+
+      .hero .sub-logo img {
+        height: 18px;
+      }
+
+      .photographers {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin: 30px auto;
+        padding: 0 12px;
+        max-width: 100%;
+      }
+
+      .card-info {
+        padding: 8px 2px;
+      }
+
+      .card-info h3 {
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+
+      .card-info .btn-portfolio {
+        padding: 5px 12px;
+        font-size: 10px;
+      }
+
+      .popup-overlay {
+        padding: 0;
+        align-items: stretch;
+      }
+
+      .popup-content {
+        border-radius: 0;
+        max-height: 100vh;
+        max-width: 100%;
+        margin: 0;
+      }
+
+      .tab-bar {
+        padding: 0 8px;
+      }
+
+      .tab-btn {
+        padding: 14px 8px;
+        font-size: 14px;
+      }
+
+      .popup-close {
+        top: 6px;
+        right: 8px;
+        width: 36px;
+        height: 36px;
+        font-size: 24px;
+      }
+
+      .portfolio-tab {
+        padding: 16px 12px 24px;
+      }
+
+      .popup-header {
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .popup-avatar {
+        width: 40px;
+        height: 40px;
+      }
+
+      .popup-header h2 {
+        font-size: 16px;
+      }
+
+      .popup-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .popup-img-wrap {
+        aspect-ratio: 4 / 3;
+      }
+
+      .lightbox-nav {
+        width: 36px;
+        height: 36px;
+        font-size: 22px;
+      }
+
+      .lightbox-prev { left: 8px; }
+      .lightbox-next { right: 8px; }
+
+      .footer {
+        padding: 24px 16px;
+        font-size: 11px;
       }
     }
   </style>
