@@ -251,7 +251,6 @@
     }
 
     .popup-img-wrap {
-      aspect-ratio: 1;
       border-radius: 6px;
       overflow: hidden;
       cursor: pointer;
@@ -265,8 +264,7 @@
 
     .popup-img-wrap img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
     }
 
@@ -499,10 +497,6 @@
         gap: 8px;
       }
 
-      .popup-img-wrap {
-        aspect-ratio: 4 / 3;
-      }
-
       .lightbox-nav {
         width: 36px;
         height: 36px;
@@ -625,9 +619,8 @@
       {
         name: '鈴木千恵',
         desc: 'ウェディング・ファミリーフォト',
-        avatar: '',
+        avatar: 'images/suzukichie/0029_original.jpg',
         photos: [
-          'images/suzukichie/0029_original.jpg',
           'images/suzukichie/12-20240815-DSC_1066.jpg',
           'images/suzukichie/2-20250113-R0008689.jpg',
           'images/suzukichie/240121-R0004880.jpg',
@@ -645,22 +638,21 @@
       {
         name: '日浦香織',
         desc: 'ポートレート・商品撮影',
-        avatar: '',
+        avatar: 'images/kaori/DSC_8126.jpg',
         photos: [
-          'images/kaori/DSC_8126.jpg',
-          'images/kaori/仕事風景１.jpg',
-          'images/kaori/仕事風景２.jpg',
-          'images/kaori/仕事風景３.jpg',
-          'images/kaori/大人外１.jpg',
-          'images/kaori/大人外２.jpg',
-          'images/kaori/大人室内.jpg',
-          'images/kaori/大人室内２.jpg',
-          'images/kaori/大人室内３.jpg',
-          'images/kaori/家族写真外１.jpg',
-          'images/kaori/家族写真外２.jpg',
-          'images/kaori/家族室内１.jpg',
-          'images/kaori/家族室内２.jpg',
-          'images/kaori/家族室内３.jpg',
+          'images/kaori/work1.jpg',
+          'images/kaori/work2.jpg',
+          'images/kaori/work3.jpg',
+          'images/kaori/adult_outdoor1.jpg',
+          'images/kaori/adult_outdoor2.jpg',
+          'images/kaori/adult_indoor1.jpg',
+          'images/kaori/adult_indoor2.jpg',
+          'images/kaori/adult_indoor3.jpg',
+          'images/kaori/family_outdoor1.jpg',
+          'images/kaori/family_outdoor2.jpg',
+          'images/kaori/family_indoor1.jpg',
+          'images/kaori/family_indoor2.jpg',
+          'images/kaori/family_indoor3.jpg',
         ]
       },
       {
@@ -675,6 +667,25 @@
     photographers.forEach(p => {
       if (p.photos.length === 0) {
         for (let j = 1; j <= 9; j++) p.photos.push('');
+      }
+    });
+
+    // プロフィール画像を反映
+    photographers.forEach((p, i) => {
+      if (p.avatar) {
+        const cardImg = document.querySelectorAll('.photographer-card')[i].querySelector('.card-img');
+        const img = document.createElement('img');
+        img.src = p.avatar;
+        img.alt = p.name;
+        img.className = 'card-img';
+        cardImg.replaceWith(img);
+
+        const popupAvatar = document.querySelectorAll('.popup-avatar')[i];
+        const avatarImg = document.createElement('img');
+        avatarImg.src = p.avatar;
+        avatarImg.alt = p.name;
+        avatarImg.className = 'popup-avatar';
+        popupAvatar.replaceWith(avatarImg);
       }
     });
 
