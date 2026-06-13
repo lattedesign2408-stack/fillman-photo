@@ -19,6 +19,9 @@
       font-family: 'Noto Sans JP', 'Helvetica Neue', 'Hiragino Sans', sans-serif;
       color: #333;
       background: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     /* ヘッダー */
@@ -245,9 +248,8 @@
     }
 
     .popup-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      columns: 3;
+      column-gap: 8px;
     }
 
     .popup-img-wrap {
@@ -256,6 +258,8 @@
       cursor: pointer;
       position: relative;
       transition: transform 0.2s;
+      margin-bottom: 8px;
+      break-inside: avoid;
     }
 
     .popup-img-wrap:hover {
@@ -266,12 +270,6 @@
       width: 100%;
       height: auto;
       display: block;
-    }
-
-    .popup-img-wrap:hover::after {
-      content: '';
-      position: absolute;
-      inset: 0;
     }
 
     /* プレースホルダー */
@@ -360,6 +358,7 @@
       background: #f8f8f8;
       color: #aaa;
       font-size: 13px;
+      margin-top: auto;
     }
 
     /* レスポンシブ */
@@ -370,7 +369,7 @@
       }
 
       .popup-grid {
-        grid-template-columns: repeat(2, 1fr);
+        columns: 2;
       }
 
       .hero h1 {
@@ -493,8 +492,7 @@
       }
 
       .popup-grid {
-        grid-template-columns: 1fr;
-        gap: 8px;
+        columns: 2;
       }
 
       .lightbox-nav {
